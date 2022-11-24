@@ -1,0 +1,102 @@
+<section class="container">
+	<div class="row">
+		<div class="col-12">
+		<p>You can bind our <code>NgbPagination</code> component with slicing the data list</p>
+	<form>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon">
+					<i class="glyphicon glyphicon-search"></i>
+				</div>
+				<input type="text" class="form-control" name="searchString" placeholder="Type to search..." [(ngModel)]="searchString" />
+			</div>
+		</div>
+	</form>
+	<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">#ID</th>
+					<th scope="col">Académico</th>
+					<th scope="col">Área personal</th>
+					<th scope="col">Jornada</th>
+					<th scope="col">Facultad</th>
+					<th scope="col">Función principal</th>
+					<th scope="col">Esc/Carr/Núcl</th>
+					<th scope="col">Acciones</th>
+				</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let userDummy of usuarios | filter : 'area' : searchString; let i = index">
+				<td> {{ userDummy.academicoId }}</td>
+				<td>
+					<div class="widget-26-job-emp-img">
+						<img src="{{ userDummy.avatar }}" alt="Company" style="width: 60px;height: 60px;" />
+					</div>
+				</td>
+				<td>
+					<div class="widget-26-job-title">
+						<a href="#">{{ userDummy.area}}</a>
+						<p class="m-0"><a href="#" class="employer-name">{{userDummy.company}}</a> <span class="text-muted time"> 1 days
+								ago</span></p>
+					</div>
+				</td>
+				<td>
+					<div class="widget-26-job-info">
+						<p class="type m-0">{{userDummy.typeDay}}</p>
+						<p class="text-muted m-0">en <span class="location">Santiago, Chile</span></p>
+					</div>
+				</td>
+				<td>
+					<div class="widget-26-job-salary">{{userDummy.EscCarrNucl }}</div>
+				</td>
+				<td>
+					<div class="widget-26-job-category bg-soft-base">
+						<i class="indicator bg-base"></i>
+						<span>{{userDummy.funcion}}</span>
+					</div>
+				</td>
+				<td>
+					<div class="widget-26-job-salary">{{userDummy.EscCarrNucl }}</div>
+				</td>
+				<td>
+					<div class="list-inline-item dropdown"><a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="false"
+							class="text-muted dropdown-toggle font-size-18 px-2" aria-expanded="true"><i
+								class="bx bx-dots-vertical-rounded"></i></a>
+						<div class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end"
+							style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 24.7706px, 0px);">
+							<a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#"
+								class="dropdown-item">Something else here</a></div>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="d-flex justify-content-between p-2">
+		<!-- <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+			(pageChange)="refreshCountries()">
+		</ngb-pagination> -->
+		<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+			(pageChange)="dummy()">
+		</ngb-pagination>
+
+		<!-- <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+			<option [ngValue]="2">2 items per page</option>
+			<option [ngValue]="4">4 items per page</option>
+			<option [ngValue]="6">6 items per page</option>
+		</select>  -->
+
+		<select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="dummy()">
+			<option [ngValue]="2">2 items per page</option>
+			<option [ngValue]="4">4 items per page</option>
+			<option [ngValue]="6">6 items per page</option>
+		</select>
+	</div>
+
+		</div>
+	</div>
+</section>
+
+<pre>Current page: {{page}}</pre>
+<pre>Current collectionSize: {{collectionSize}}</pre>
+<pre>Current pageSize: {{pageSize}}</pre>
